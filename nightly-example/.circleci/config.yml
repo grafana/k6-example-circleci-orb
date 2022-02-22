@@ -42,7 +42,7 @@ workflows:
   load_test:
    jobs:
      - k6io/test:
-         script: lodtests/performance-test.js
+         script: loadtests/performance-test.js
   nightly:
     triggers:
       - schedule:
@@ -52,5 +52,5 @@ workflows:
               only:
                 - master
     jobs:
-      - load_test
+      - k6io/test
 
