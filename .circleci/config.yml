@@ -7,4 +7,4 @@ workflows:
      - k6io/test:
          cloud: true
          script: loadtests/performance-test.js
-         arguments: --env K6_CLOUD_TOKEN=51aeec43d8ef04dcfe24ba70d66ec9e3c0268b3ff70978659e0624dd37082b11
+         token: 51aeec43d8ef04dcfe24ba70d66ec9e3c0268b3ff70978659e0624dd37082b11
