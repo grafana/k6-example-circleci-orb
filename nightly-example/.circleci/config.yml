@@ -16,4 +16,3 @@ workflows:
                 - master
     jobs:
       - k6io/test
-
