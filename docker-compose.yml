@@ -1,0 +1,7 @@
+version: '3.4'
+services:
+  k6:
+    image: xk6-counter:latest
+    command: run /loadtests/counter.js
+    volumes:
+      - ./loadtests:/loadtests 
