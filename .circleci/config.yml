@@ -2,7 +2,7 @@ version: 2
 jobs:
  deploy:
    docker:
-     - image: circleci/buildpack-deps:stretch
+     - image: cimg/buildpack-deps:stretch
    steps:
      - checkout
      - setup_remote_docker:
