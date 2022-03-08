@@ -10,7 +10,6 @@ RUN apk add --no-cache ca-certificates && \
     adduser -D -u 12345 -g 12345 k6
 
 WORKDIR /home/k6
-COPY ./counter.js /home/k6
 COPY --from=builder /tmp/k6 /usr/bin/k6
 
 USER 12345
