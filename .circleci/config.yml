@@ -7,16 +7,15 @@ jobs:
      - checkout
      - setup_remote_docker:
          version: 19.03.13
-     - run:
-         name: Build and push to Docker Hub
-         command: |
-           docker build -t $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest .
-           echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER_ID" --password-stdin
-           docker push $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest
+    #  - run:
+    #      name: Build and push to Docker Hub
+    #      command: |
+    #        docker build -t $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest .
+    #        echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER_ID" --password-stdin
+    #        docker push $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest
      - run:  
          name: Execute tests on the docker image
-         command: |
-           - run: docker-compose run k6
+         command: docker-compose run k6
  
 workflows:
  version: 2
