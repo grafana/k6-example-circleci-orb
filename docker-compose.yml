@@ -4,7 +4,7 @@ services:
     build: .
     # image: xk6-counter:latest
     container_name: xk6-counter
-#     volumes:
+    volumes:
       - ./:/k6
 #     working_dir: /k6/loadtests
     command: run k6/loadtests/counter.js
