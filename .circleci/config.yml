@@ -1,8 +1,21 @@
-version: 2.1
-orbs:
- grafana: grafana/k6@1.0.1
+version: 2
+jobs:
+ deploy:
+   docker:
+     - image: circleci/buildpack-deps:stretch
+   steps:
+     - checkout
+     - setup_remote_docker:
+         version: 19.03.13
+     - run:
+         name: Build and push to Docker Hub
+         command: |
+           docker build -t $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest .
+           echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER_ID" --password-stdin
+           docker push $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest
+ 
 workflows:
- load_test:
+ version: 2
+ build-master:
    jobs:
-    - grafana/k6:
-         script: loadtests/performance-test.js
+     - deploy
