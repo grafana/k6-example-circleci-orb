@@ -5,6 +5,6 @@ services:
     # image: xk6-counter:latest
     container_name: xk6-counter
 #     volumes:
-#       - ./:/k6
+      - ./:/k6
 #     working_dir: /k6/loadtests
-    command: run /loadtests/counter.js
+    command: run k6/loadtests/counter.js
