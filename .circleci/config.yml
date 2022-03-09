@@ -9,7 +9,7 @@ jobs:
          version: 19.03.13
      - run:  
          name: Execute tests on the docker image
-         command: k6 run loadtests/performance-test.js --out json=full.json > /tmp/artifacts
+         command: k6 run loadtests/performance-test.js  > /tmp/artifacts
 
      - store_artifacts:
          path: /tmp/artifacts
