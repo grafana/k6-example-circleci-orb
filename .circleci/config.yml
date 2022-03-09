@@ -1,9 +1,9 @@
 version: 2
 jobs:
- deploy:
+ test:
+   working_directory: /tmp
    docker:
      - image: $DOCKER_HUB_USER_ID/k6-example-circleci-orb
-   working_directory: /tmp
    steps:
      - checkout
      - setup_remote_docker:
@@ -19,4 +19,4 @@ workflows:
  version: 2
  build-master:
    jobs:
-     - deploy
+     - test
