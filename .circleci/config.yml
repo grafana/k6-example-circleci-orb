@@ -14,8 +14,11 @@ jobs:
     #        echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER_ID" --password-stdin
     #        docker push $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest
      - run:  
+         name: Build the docker image
+         command: docker-compose build
+     - run:  
          name: Execute tests on the docker image
-         command: docker-compose run k6
+         command: docker run --rm -i -v "$PWD:/work" xk6-counter:latest run  --out json=/work/out.json /work/loadtests/counter.js
  
 workflows:
  version: 2
