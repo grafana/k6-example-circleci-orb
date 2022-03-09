@@ -18,7 +18,7 @@ jobs:
     #      command: docker-compose build
      - run:  
          name: Execute tests on the docker image
-         command: docker run --rm -i -v "$PWD:/work" xk6-counter:latest run  --out json=/work/out.json /work/loadtests/counter.js
+         command: k6 run loadtests/counter.js
  
 workflows:
  version: 2
