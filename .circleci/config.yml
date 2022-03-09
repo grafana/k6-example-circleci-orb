@@ -3,22 +3,17 @@ jobs:
  deploy:
    docker:
      - image: $DOCKER_HUB_USER_ID/k6-example-circleci-orb
+   working_directory: /tmp
    steps:
      - checkout
      - setup_remote_docker:
          version: 19.03.13
-    #  - run:
-    #      name: Build and push to Docker Hub
-    #      command: |
-    #        docker build -t $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest .
-    #        echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER_ID" --password-stdin
-    #        docker push $DOCKER_HUB_USER_ID/$IMAGE_NAME:latest
-    #  - run:  
-    #      name: Build the docker image
-    #      command: docker-compose build
      - run:  
          name: Execute tests on the docker image
-         command: k6 run loadtests/counter.js
+         command: k6 run loadtests/performance-test.js --out json=/results/full.json > /tmp/artifacts
+
+     - store_artifacts:
+         path: /tmp/artifacts
  
 workflows:
  version: 2
