@@ -1,21 +1,8 @@
-version: 2
-jobs:
- test:
-   docker:
-     - image: $DOCKER_HUB_USER_ID/k6-example-circleci-orb
-   steps:
-     - checkout
-     - setup_remote_docker:
-         version: 19.03.13
-     - run:  
-         name: Execute tests on the docker image
-         command: k6 run loadtests/performance-test.js  > /tmp/artifacts
-
-     - store_artifacts:
-         path: /tmp/artifacts
- 
+version: 2.1
+orbs:
+ grafana: grafana/k6@1.0.1
 workflows:
- version: 2
- build-master:
+ load_test:
    jobs:
-     - test
+    - grafana/k6:
+         script: loadtests/performance-test.js --out json=full.json > /tmp/artifacts
