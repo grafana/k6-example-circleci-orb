@@ -2,7 +2,7 @@ version: 2
 jobs:
  deploy:
    docker:
-     - image: sparatan/k6-example-circleci-orb
+     - image: $DOCKER_HUB_USER_ID/k6-example-circleci-orb
    steps:
      - checkout
      - setup_remote_docker:
